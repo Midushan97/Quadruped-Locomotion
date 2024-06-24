@@ -1,0 +1,858 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.09309407726183819 0.6413886291857609 0.7615471877237663 0.3766963022260643
+  position -4.4507136169912895 0.08500528551525138 1.5525678177198636
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 8 8
+}
+Robot {
+  translation 0 0 0.5
+  rotation 0 1 0 0
+  children [
+    Solid {
+      translation 0 0.235 0.175
+      children [
+        DEF Head Shape {
+          appearance PBRAppearance {
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.12 0.15 0.1
+          }
+        }
+      ]
+      name "solid(6)"
+      boundingObject USE Head
+      physics Physics {
+        density -1
+        mass 0.11
+      }
+    }
+    Solid {
+      translation 0 0.2 0.025
+      children [
+        DEF NECK Shape {
+          appearance PBRAppearance {
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.2
+            radius 0.04
+          }
+        }
+      ]
+      name "solid(5)"
+      boundingObject USE NECK
+      physics Physics {
+        density -1
+        mass 0.146
+      }
+    }
+    DEF FL_HIP HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0 0.175 0
+      }
+      device [
+        PositionSensor {
+          name "FL_SENSOR_1"
+        }
+        RotationalMotor {
+          name "FL_MOTOR_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.16499999999999979 0.175 0
+        rotation 1 0 0 0
+        children [
+          DEF FL_KNEE HingeJoint {
+            jointParameters HingeJointParameters {
+              anchor 0 0 -0.15
+            }
+            device [
+              RotationalMotor {
+                name "FL_MOTOR_2"
+              }
+              PositionSensor {
+                name "FL_SENSOR_2"
+              }
+            ]
+            endPoint Solid {
+              translation 0 0 -0.15
+              rotation 1 0 0 0
+              children [
+                Solid {
+                  translation 0 0 -0.155
+                  children [
+                    Solid {
+                      translation 0 0 -0.115
+                      children [
+                        DEF FL_BASE Shape {
+                          appearance PBRAppearance {
+                            baseColor 1 0 0
+                            roughness 1
+                            metalness 0
+                          }
+                          geometry Capsule {
+                            height 0.02
+                            radius 0.02
+                          }
+                        }
+                      ]
+                      boundingObject USE FL_BASE
+                      physics Physics {
+                      }
+                    }
+                    DEF FL_ARM_2 Shape {
+                      appearance PBRAppearance {
+                        baseColor 1 0 1
+                        roughness 1
+                        metalness 0
+                      }
+                      geometry Capsule {
+                        height 0.23
+                        radius 0.015
+                      }
+                    }
+                  ]
+                  name "solid(3)"
+                  boundingObject USE FL_ARM_2
+                  physics Physics {
+                    density -1
+                    mass 0.032
+                  }
+                }
+                Group {
+                  children [
+                    Solid {
+                      translation -0.02 0 -0.025
+                      children [
+                        DEF FL_KNEE_1 Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0 1
+                            roughness 1
+                            metalness 0
+                          }
+                          geometry Box {
+                            size 0.01 0.05 0.05
+                          }
+                        }
+                      ]
+                      name "solid(1)"
+                      boundingObject USE FL_KNEE_1
+                      physics Physics {
+                      }
+                    }
+                    Solid {
+                      translation 0.02 0 -0.025
+                      children [
+                        DEF FL_KNEE_2 Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0 1
+                            roughness 1
+                            metalness 0
+                          }
+                          geometry Box {
+                            size 0.01 0.05 0.05
+                          }
+                        }
+                      ]
+                      name "solid(2)"
+                      boundingObject USE FL_KNEE_2
+                      physics Physics {
+                      }
+                    }
+                    Solid {
+                      translation 0 0 -0.055
+                      children [
+                        DEF FL_KNEE_3 Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0 1
+                            roughness 1
+                            metalness 0
+                          }
+                          geometry Box {
+                            size 0.05 0.05 0.01
+                          }
+                        }
+                      ]
+                      boundingObject USE FL_KNEE_3
+                      physics Physics {
+                      }
+                    }
+                  ]
+                }
+                DEF FL_AXLE_2 Shape {
+                  appearance PBRAppearance {
+                    baseColor 1 0 0
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry Box {
+                    size 0.03 0.05 0.05
+                  }
+                }
+              ]
+              name "solid(1)"
+              boundingObject USE FL_AXLE_2
+              physics Physics {
+                density -1
+                mass 0.001
+              }
+            }
+          }
+          Solid {
+            translation 0 0 -0.075
+            children [
+              DEF FL_ARM_1 Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0 1
+                  roughness 1
+                  metalness 0
+                }
+                geometry Box {
+                  size 0.03 0.05 0.2
+                }
+              }
+            ]
+            boundingObject USE FL_ARM_1
+            physics Physics {
+              density -1
+              mass 0.138
+            }
+          }
+          DEF FL_AXLE_1 Shape {
+            appearance PBRAppearance {
+              baseColor 1 0 0
+              roughness 1
+              metalness 0
+            }
+            geometry Box {
+              size 0.03 0.05 0.05
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE FL_AXLE_1
+        physics Physics {
+          density -1
+          mass 0.001
+        }
+      }
+    }
+    DEF FR_HIP HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0 0.175 0
+      }
+      device [
+        PositionSensor {
+          name "FR_SENSOR_1"
+        }
+        RotationalMotor {
+          name "FR_MOTOR_1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.165 0.175 0
+        rotation 1 0 0 0
+        children [
+          DEF FR_KNEE HingeJoint {
+            jointParameters HingeJointParameters {
+              anchor 0 0 -0.15
+            }
+            device [
+              RotationalMotor {
+                name "FR_MOTOR_2"
+              }
+              PositionSensor {
+                name "FR_SENSOR_2"
+              }
+            ]
+            endPoint Solid {
+              translation 0 0 -0.15
+              rotation 1 0 0 0
+              children [
+                Solid {
+                  translation 0 0 -0.155
+                  children [
+                    Solid {
+                      translation 0 0 -0.115
+                      children [
+                        DEF FR_BASE Shape {
+                          appearance PBRAppearance {
+                            baseColor 1 0 0
+                            roughness 1
+                            metalness 0
+                          }
+                          geometry Capsule {
+                            height 0.02
+                            radius 0.02
+                          }
+                        }
+                      ]
+                      boundingObject USE FR_BASE
+                      physics Physics {
+                      }
+                    }
+                    DEF FR_ARM_2 Shape {
+                      appearance PBRAppearance {
+                        baseColor 1 0 1
+                        roughness 1
+                        metalness 0
+                      }
+                      geometry Capsule {
+                        height 0.23
+                        radius 0.015
+                      }
+                    }
+                  ]
+                  name "solid(3)"
+                  boundingObject USE FR_ARM_2
+                  physics Physics {
+                    density -1
+                    mass 0.032
+                  }
+                }
+                Group {
+                  children [
+                    Solid {
+                      translation -0.02 0 -0.025
+                      children [
+                        DEF FR_KNEE_1 Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0 1
+                            roughness 1
+                            metalness 0
+                          }
+                          geometry Box {
+                            size 0.01 0.05 0.05
+                          }
+                        }
+                      ]
+                      name "solid(1)"
+                      boundingObject USE FR_KNEE_1
+                      physics Physics {
+                      }
+                    }
+                    Solid {
+                      translation 0.02 0 -0.025
+                      children [
+                        DEF FR_KNEE_2 Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0 1
+                            roughness 1
+                            metalness 0
+                          }
+                          geometry Box {
+                            size 0.01 0.05 0.05
+                          }
+                        }
+                      ]
+                      name "solid(2)"
+                      boundingObject USE FR_KNEE_2
+                      physics Physics {
+                      }
+                    }
+                    Solid {
+                      translation 0 0 -0.055
+                      children [
+                        DEF FR_KNEE_3 Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0 1
+                            roughness 1
+                            metalness 0
+                          }
+                          geometry Box {
+                            size 0.05 0.05 0.01
+                          }
+                        }
+                      ]
+                      boundingObject USE FR_KNEE_3
+                      physics Physics {
+                      }
+                    }
+                  ]
+                }
+                DEF FR_AXLE_2 Shape {
+                  appearance PBRAppearance {
+                    baseColor 1 0 0
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry Box {
+                    size 0.03 0.05 0.05
+                  }
+                }
+              ]
+              name "solid(1)"
+              boundingObject USE FR_AXLE_2
+              physics Physics {
+                density -1
+                mass 0.001
+              }
+            }
+          }
+          Solid {
+            translation 0 0 -0.075
+            children [
+              DEF FR_ARM_1 Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0 1
+                  roughness 1
+                  metalness 0
+                }
+                geometry Box {
+                  size 0.03 0.05 0.2
+                }
+              }
+            ]
+            boundingObject USE FR_ARM_1
+            physics Physics {
+              density -1
+              mass 0.138
+            }
+          }
+          DEF FR_AXLE_1 Shape {
+            appearance PBRAppearance {
+              baseColor 1 0 0
+              roughness 1
+              metalness 0
+            }
+            geometry Box {
+              size 0.03 0.05 0.05
+            }
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE FR_AXLE_1
+        physics Physics {
+          density -1
+          mass 0.001
+        }
+      }
+    }
+    DEF BR_HIP HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0 -0.175 0
+      }
+      device [
+        PositionSensor {
+          name "BR_SENSOR_1"
+        }
+        RotationalMotor {
+          name "BR_MOTOR_1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.16499999999999973 -0.175 0
+        rotation 1 0 0 0
+        children [
+          DEF BR_KNEE HingeJoint {
+            jointParameters HingeJointParameters {
+              anchor 0 0 -0.15
+            }
+            device [
+              RotationalMotor {
+                name "BR_MOTOR_2"
+              }
+              PositionSensor {
+                name "BR_SENSOR_2"
+              }
+            ]
+            endPoint Solid {
+              translation 0 0 -0.15
+              rotation 1 0 0 0
+              children [
+                Solid {
+                  translation 0 0 -0.155
+                  children [
+                    Solid {
+                      translation 0 0 -0.115
+                      children [
+                        DEF BR_BASE Shape {
+                          appearance PBRAppearance {
+                            baseColor 1 0 0
+                            roughness 1
+                            metalness 0
+                          }
+                          geometry Capsule {
+                            height 0.02
+                            radius 0.02
+                          }
+                        }
+                      ]
+                      boundingObject USE BR_BASE
+                      physics Physics {
+                      }
+                    }
+                    DEF BR_ARM_2 Shape {
+                      appearance PBRAppearance {
+                        baseColor 1 0 1
+                        roughness 1
+                        metalness 0
+                      }
+                      geometry Capsule {
+                        height 0.23
+                        radius 0.015
+                      }
+                    }
+                  ]
+                  name "solid(3)"
+                  boundingObject USE BR_ARM_2
+                  physics Physics {
+                    density -1
+                    mass 0.034
+                  }
+                }
+                Group {
+                  children [
+                    Solid {
+                      translation -0.02 0 -0.025
+                      children [
+                        DEF BR_KNEE_1 Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0 1
+                            roughness 1
+                            metalness 0
+                          }
+                          geometry Box {
+                            size 0.01 0.05 0.05
+                          }
+                        }
+                      ]
+                      name "solid(1)"
+                      boundingObject USE BR_KNEE_1
+                      physics Physics {
+                      }
+                    }
+                    Solid {
+                      translation 0.02 0 -0.025
+                      children [
+                        DEF BR_KNEE_2 Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0 1
+                            roughness 1
+                            metalness 0
+                          }
+                          geometry Box {
+                            size 0.01 0.05 0.05
+                          }
+                        }
+                      ]
+                      name "solid(2)"
+                      boundingObject USE BR_KNEE_2
+                      physics Physics {
+                      }
+                    }
+                    Solid {
+                      translation 0 0 -0.055
+                      children [
+                        DEF BR_KNEE_3 Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0 1
+                            roughness 1
+                            metalness 0
+                          }
+                          geometry Box {
+                            size 0.05 0.05 0.01
+                          }
+                        }
+                      ]
+                      boundingObject USE BR_KNEE_3
+                      physics Physics {
+                      }
+                    }
+                  ]
+                }
+                DEF BR_AXLE_2 Shape {
+                  appearance PBRAppearance {
+                    baseColor 1 0 0
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry Box {
+                    size 0.03 0.05 0.05
+                  }
+                }
+              ]
+              name "solid(1)"
+              boundingObject USE BR_AXLE_2
+              physics Physics {
+                density -1
+                mass 0.001
+              }
+            }
+          }
+          Solid {
+            translation 0 0 -0.075
+            children [
+              DEF BR_ARM_1 Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0 1
+                  roughness 1
+                  metalness 0
+                }
+                geometry Box {
+                  size 0.03 0.05 0.2
+                }
+              }
+            ]
+            boundingObject USE BR_ARM_1
+            physics Physics {
+              density -1
+              mass 0.138
+            }
+          }
+          DEF BR_AXLE_1 Shape {
+            appearance PBRAppearance {
+              baseColor 1 0 0
+              roughness 1
+              metalness 0
+            }
+            geometry Box {
+              size 0.03 0.05 0.05
+            }
+          }
+        ]
+        name "solid(3)"
+        boundingObject USE BR_AXLE_1
+        physics Physics {
+          density -1
+          mass 0.001
+        }
+      }
+    }
+    DEF BL_HIP HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0 -0.175 0
+      }
+      device [
+        PositionSensor {
+          name "BL_SENSOR_1"
+        }
+        RotationalMotor {
+          name "BL_MOTOR_1"
+        }
+      ]
+      endPoint Solid {
+        translation -0.16499999999999979 -0.175 0
+        rotation 1 0 0 0
+        children [
+          DEF BL_KNEE HingeJoint {
+            jointParameters HingeJointParameters {
+              anchor 0 0 -0.15
+            }
+            device [
+              RotationalMotor {
+                name "BL_MOTOR_2"
+              }
+              PositionSensor {
+                name "BL_SENSOR_2"
+              }
+            ]
+            endPoint Solid {
+              translation 0 0 -0.15
+              rotation 1 0 0 0
+              children [
+                Solid {
+                  translation 0 0 -0.155
+                  children [
+                    Solid {
+                      translation 0 0 -0.115
+                      children [
+                        DEF BL_BASE Shape {
+                          appearance PBRAppearance {
+                            baseColor 1 0 0
+                            roughness 1
+                            metalness 0
+                          }
+                          geometry Capsule {
+                            height 0.02
+                            radius 0.02
+                          }
+                        }
+                      ]
+                      boundingObject USE BL_BASE
+                      physics Physics {
+                      }
+                    }
+                    DEF BL_ARM_2 Shape {
+                      appearance PBRAppearance {
+                        baseColor 1 0 1
+                        roughness 1
+                        metalness 0
+                      }
+                      geometry Capsule {
+                        height 0.23
+                        radius 0.015
+                      }
+                    }
+                  ]
+                  name "solid(3)"
+                  boundingObject USE BL_ARM_2
+                  physics Physics {
+                    density -1
+                    mass 0.034
+                  }
+                }
+                Group {
+                  children [
+                    Solid {
+                      translation -0.02 0 -0.025
+                      children [
+                        DEF BL_KNEE_1 Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0 1
+                            roughness 1
+                            metalness 0
+                          }
+                          geometry Box {
+                            size 0.01 0.05 0.05
+                          }
+                        }
+                      ]
+                      name "solid(1)"
+                      boundingObject USE BL_KNEE_1
+                      physics Physics {
+                      }
+                    }
+                    Solid {
+                      translation 0.02 0 -0.025
+                      children [
+                        DEF BL_KNEE_2 Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0 1
+                            roughness 1
+                            metalness 0
+                          }
+                          geometry Box {
+                            size 0.01 0.05 0.05
+                          }
+                        }
+                      ]
+                      name "solid(2)"
+                      boundingObject USE BL_KNEE_2
+                      physics Physics {
+                      }
+                    }
+                    Solid {
+                      translation 0 0 -0.055
+                      children [
+                        DEF BL_KNEE_3 Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0 1
+                            roughness 1
+                            metalness 0
+                          }
+                          geometry Box {
+                            size 0.05 0.05 0.01
+                          }
+                        }
+                      ]
+                      boundingObject USE BL_KNEE_3
+                      physics Physics {
+                      }
+                    }
+                  ]
+                }
+                DEF BL_AXLE_2 Shape {
+                  appearance PBRAppearance {
+                    baseColor 1 0 0
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry Box {
+                    size 0.03 0.05 0.05
+                  }
+                }
+              ]
+              name "solid(1)"
+              boundingObject USE BL_AXLE_2
+              physics Physics {
+                density -1
+                mass 0.001
+              }
+            }
+          }
+          Solid {
+            translation 0 0 -0.075
+            children [
+              DEF BL_ARM_1 Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0 1
+                  roughness 1
+                  metalness 0
+                }
+                geometry Box {
+                  size 0.03 0.05 0.2
+                }
+              }
+            ]
+            boundingObject USE BL_ARM_1
+            physics Physics {
+              density -1
+              mass 0.138
+            }
+          }
+          DEF BL_AXLE_1 Shape {
+            appearance PBRAppearance {
+              baseColor 1 0 0
+              roughness 1
+              metalness 0
+            }
+            geometry Box {
+              size 0.03 0.05 0.05
+            }
+          }
+        ]
+        name "solid(4)"
+        boundingObject USE BL_AXLE_1
+        physics Physics {
+          density -1
+          mass 0.001
+        }
+      }
+    }
+    Solid {
+      children [
+        DEF BODY Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 1
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.3 0.5 0.15
+          }
+        }
+      ]
+      boundingObject USE BODY
+      physics Physics {
+        density -1
+        mass 0.2
+      }
+    }
+  ]
+  boundingObject USE BODY
+  physics Physics {
+    density -1
+    mass 2
+    centerOfMass [
+      0 0.1 -0.4
+    ]
+  }
+  controller "my_controller"
+}
